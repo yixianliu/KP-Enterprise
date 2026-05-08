@@ -1,0 +1,15 @@
+export default {
+    id: 'ID',
+    model_type: '模型类型:predictive_maintenance/quality_control/production_optimization',
+    data_category: '数据类别:equipment_sensor/quality_inspection/production_record',
+    equipment_code: '设备编码(关联)',
+    feature_data: '特征数据(JSON)',
+    label_data: '标签数据(JSON)',
+    training_accuracy: '训练准确率',
+    validation_accuracy: '验证准确率',
+    data_source: '数据来源',
+    collection_time: '采集时间',
+    update_time: '更新时间',
+    create_time: '创建时间',
+    'quick Search Fields': 'ID',
+}

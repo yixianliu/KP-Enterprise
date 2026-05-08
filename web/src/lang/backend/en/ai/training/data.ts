@@ -1,0 +1,15 @@
+export default {
+    id: 'id',
+    model_type: 'model_type',
+    data_category: 'data_category',
+    equipment_code: 'equipment_code',
+    feature_data: 'feature_data',
+    label_data: 'label_data',
+    training_accuracy: 'training_accuracy',
+    validation_accuracy: 'validation_accuracy',
+    data_source: 'data_source',
+    collection_time: 'collection_time',
+    update_time: 'update_time',
+    create_time: 'create_time',
+    'quick Search Fields': 'id',
+}
