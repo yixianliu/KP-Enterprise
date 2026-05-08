@@ -50,3 +50,6 @@ pnpm-debug.log*
 /web/.vscode/
 /public/install/
 /public/npm-install-test/
+/.trae/
+/database/
+database
