@@ -15,6 +15,10 @@ class Log extends Model
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = true;
 
+    public static function onBeforeInsert(Model $model): void
+    {
+        $model->log_uuid = empty($model->log_uuid) ? Str::random(12) : $model->log_uuid;
+    }
 
     public function getCostAttr($value): ?float
     {

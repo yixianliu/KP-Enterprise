@@ -6,7 +6,7 @@
         <!-- 自定义按钮请使用插槽，甚至公共搜索也可以使用具名插槽渲染，参见文档 -->
         <TableHeader
             :buttons="['refresh', 'add', 'edit', 'delete', 'comSearch', 'quickSearch', 'columnDisplay']"
-            :quick-search-placeholder="t('Quick search placeholder', { fields: t('ai.training.task.quick Search Fields') })"
+            :quick-search-placeholder="t('Quick search placeholder', { fields: t('enterprise.quick Search Fields') })"
         ></TableHeader>
 
         <!-- 表格 -->
@@ -30,73 +30,88 @@ import Table from '/@/components/table/index.vue'
 import baTableClass from '/@/utils/baTable'
 
 defineOptions({
-    name: 'ai/training/task',
+    name: 'enterprise',
 })
 
 const { t } = useI18n()
 const tableRef = useTemplateRef('tableRef')
-const optButtons: OptButton[] = defaultOptButtons(['edit', 'delete'])
+const optButtons: OptButton[] = defaultOptButtons(['weigh-sort', 'edit', 'delete'])
 
 /**
  * baTable 内包含了表格的所有数据且数据具备响应性，然后通过 provide 注入给了后代组件
  */
 const baTable = new baTableClass(
-    new baTableApi('/admin/ai.training.Task/'),
+    new baTableApi('/admin/Enterprise/'),
     {
         pk: 'id',
         column: [
             { type: 'selection', align: 'center', operator: false },
             {
-                label: t('ai.training.task.model__name'),
-                prop: 'model.name',
-                align: 'center',
-                operatorPlaceholder: t('Fuzzy query'),
-                render: 'tags',
-                operator: 'LIKE',
-                comSearchRender: 'string',
-                width: 160,
-            },
-            {
-                label: t('ai.training.task.name'),
-                prop: 'name',
+                label: t('enterprise.lang_key'),
+                prop: 'lang_key',
                 align: 'center',
                 operatorPlaceholder: t('Fuzzy query'),
                 sortable: false,
                 operator: 'LIKE',
-                width: 160,
             },
-            { label: t('ai.training.task.training_data'), prop: 'training_data', align: 'center', operator: 'eq', sortable: false, width: 360 },
             {
-                label: t('ai.training.task.hyperparameters'),
-                prop: 'hyperparameters',
+                label: t('enterprise.title'),
+                prop: 'title',
                 align: 'center',
                 operatorPlaceholder: t('Fuzzy query'),
                 sortable: false,
                 operator: 'LIKE',
-                width: 360,
+            },
+            { label: t('enterprise.slug'), prop: 'slug', align: 'center', operatorPlaceholder: t('Fuzzy query'), sortable: false, operator: 'LIKE' },
+            { label: t('enterprise.logo'), prop: 'logo', align: 'center', operatorPlaceholder: t('Fuzzy query'), sortable: false, operator: 'LIKE' },
+            { label: t('enterprise.images'), prop: 'images', align: 'center', render: 'images', operator: false },
+            {
+                label: t('enterprise.phone'),
+                prop: 'phone',
+                align: 'center',
+                operatorPlaceholder: t('Fuzzy query'),
+                sortable: false,
+                operator: 'LIKE',
             },
             {
-                label: t('ai.training.task.status'),
-                prop: 'status',
+                label: t('enterprise.email'),
+                prop: 'email',
+                align: 'center',
+                operatorPlaceholder: t('Fuzzy query'),
+                sortable: false,
+                operator: 'LIKE',
+            },
+            {
+                label: t('enterprise.website'),
+                prop: 'website',
+                align: 'center',
+                operatorPlaceholder: t('Fuzzy query'),
+                sortable: false,
+                operator: 'LIKE',
+            },
+            { label: t('enterprise.metadata'), prop: 'metadata', align: 'center', operator: 'eq', sortable: false, render: 'tag' },
+            {
+                label: t('enterprise.active_status'),
+                prop: 'active_status',
                 align: 'center',
                 operator: 'eq',
                 sortable: false,
                 render: 'tag',
-                replaceValue: {
-                    pending: t('ai.training.task.status pending'),
-                    running: t('ai.training.task.status running'),
-                    finished: t('ai.training.task.status finished'),
-                    failed: t('ai.training.task.status failed'),
-                },
+                replaceValue: { '0': t('enterprise.active_status 0'), '1': t('enterprise.active_status 1') },
             },
-            { label: t('ai.training.task.progress'), prop: 'progress', align: 'center', sortable: false, operator: 'RANGE' },
-            { label: t('ai.training.task.epoch'), prop: 'epoch', align: 'center', sortable: false, operator: 'RANGE' },
-            { label: t('ai.training.task.loss'), prop: 'loss', align: 'center', sortable: false, operator: 'RANGE' },
-            { label: t('ai.training.task.accuracy'), prop: 'accuracy', align: 'center', sortable: false, operator: 'RANGE' },
-            { label: t('ai.training.task.start_time'), prop: 'start_time', align: 'center', sortable: false, operator: 'RANGE' },
-            { label: t('ai.training.task.end_time'), prop: 'end_time', align: 'center', sortable: false, operator: 'RANGE' },
             {
-                label: t('ai.training.task.update_time'),
+                label: t('enterprise.featured_status'),
+                prop: 'featured_status',
+                align: 'center',
+                operator: 'eq',
+                sortable: false,
+                render: 'tag',
+                replaceValue: { '0': t('enterprise.featured_status 0'), '1': t('enterprise.featured_status 1') },
+            },
+            { label: t('enterprise.weigh'), prop: 'weigh', align: 'center', operator: 'RANGE', sortable: 'custom' },
+            { label: t('enterprise.view_count'), prop: 'view_count', align: 'center', sortable: false, operator: 'RANGE' },
+            {
+                label: t('enterprise.update_time'),
                 prop: 'update_time',
                 align: 'center',
                 render: 'datetime',
@@ -107,7 +122,7 @@ const baTable = new baTableClass(
                 timeFormat: 'yyyy-mm-dd hh:MM:ss',
             },
             {
-                label: t('ai.training.task.create_time'),
+                label: t('enterprise.create_time'),
                 prop: 'create_time',
                 align: 'center',
                 render: 'datetime',
@@ -117,12 +132,13 @@ const baTable = new baTableClass(
                 width: 160,
                 timeFormat: 'yyyy-mm-dd hh:MM:ss',
             },
-            { label: t('Operate'), align: 'center', width: 100, render: 'buttons', buttons: optButtons, operator: false, fixed: 'right' },
+            { label: t('Operate'), align: 'center', width: 140, render: 'buttons', buttons: optButtons, operator: false, fixed: 'right' },
         ],
         dblClickNotEditColumn: [undefined],
+        defaultOrder: { prop: 'weigh', order: 'desc' },
     },
     {
-        defaultItems: {},
+        defaultItems: { lang_key: 'zh_CN', content: '', active_status: '1', featured_status: '0' },
     }
 )
 

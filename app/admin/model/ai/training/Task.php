@@ -15,6 +15,10 @@ class Task extends Model
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = true;
 
+    public static function onBeforeInsert(Model $model): void
+    {
+        $model->task_uuid = empty($model->task_uuid) ? Str::random(12) : $model->task_uuid;
+    }
 
     public function getLossAttr($value): ?float
     {

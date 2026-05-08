@@ -1,29 +1,32 @@
 <?php
 
-namespace app\admin\controller\ai;
+namespace app\admin\controller;
 
 use app\common\controller\Backend;
 
 /**
- * AI模型管理
+ * 企业信息管理
  */
-class Manager extends Backend
+class Enterprise extends Backend
 {
     /**
-     * Manager模型对象
+     * Enterprise模型对象
      * @var object
-     * @phpstan-var \app\admin\model\ai\Manager
+     * @phpstan-var \app\admin\model\Enterprise
      */
     protected object $model;
 
+    protected string|array $defaultSortField = 'weigh,desc';
+
     protected array|string $preExcludeFields = ['id', 'update_time', 'create_time'];
 
-    protected string|array $quickSearchField = ['name'];
+    protected string|array $quickSearchField = ['id'];
 
     public function initialize(): void
     {
         parent::initialize();
-        $this->model = new \app\admin\model\ai\Manager();
+        $this->model = new \app\admin\model\Enterprise();
+        $this->request->filter('clean_xss');
     }
 
 
