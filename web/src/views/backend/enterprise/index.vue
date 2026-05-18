@@ -4,10 +4,7 @@
 
         <!-- 表格顶部菜单 -->
         <!-- 自定义按钮请使用插槽，甚至公共搜索也可以使用具名插槽渲染，参见文档 -->
-        <TableHeader
-            :buttons="['refresh', 'add', 'edit', 'delete', 'comSearch', 'quickSearch', 'columnDisplay']"
-            :quick-search-placeholder="t('Quick search placeholder', { fields: t('enterprise.quick Search Fields') })"
-        ></TableHeader>
+        <TableHeader :buttons="['refresh', 'add', 'edit', 'delete', 'comSearch', 'quickSearch', 'columnDisplay']" :quick-search-placeholder="t('Quick search placeholder', { fields: t('enterprise.quick Search Fields') })"></TableHeader>
 
         <!-- 表格 -->
         <!-- 表格列有多种自定义渲染方式，比如自定义组件、具名插槽等，参见文档 -->
@@ -53,6 +50,7 @@ const baTable = new baTableClass(
                 operatorPlaceholder: t('Fuzzy query'),
                 sortable: false,
                 operator: 'LIKE',
+                width: 150,
             },
             {
                 label: t('enterprise.title'),
@@ -61,10 +59,11 @@ const baTable = new baTableClass(
                 operatorPlaceholder: t('Fuzzy query'),
                 sortable: false,
                 operator: 'LIKE',
+                width: 260,
             },
-            { label: t('enterprise.slug'), prop: 'slug', align: 'center', operatorPlaceholder: t('Fuzzy query'), sortable: false, operator: 'LIKE' },
-            { label: t('enterprise.logo'), prop: 'logo', align: 'center', operatorPlaceholder: t('Fuzzy query'), sortable: false, operator: 'LIKE' },
-            { label: t('enterprise.images'), prop: 'images', align: 'center', render: 'images', operator: false },
+            { label: t('enterprise.slug'), prop: 'slug', align: 'center', operatorPlaceholder: t('Fuzzy query'), sortable: false, operator: 'LIKE', width: 150 },
+            { label: t('enterprise.logo'), prop: 'logo', align: 'center', operatorPlaceholder: t('Fuzzy query'), sortable: false, operator: 'LIKE', width: 150 },
+            { label: t('enterprise.images'), prop: 'images', align: 'center', render: 'images', operator: false, width: 350 },
             {
                 label: t('enterprise.phone'),
                 prop: 'phone',
@@ -98,6 +97,7 @@ const baTable = new baTableClass(
                 sortable: false,
                 render: 'tag',
                 replaceValue: { '0': t('enterprise.active_status 0'), '1': t('enterprise.active_status 1') },
+                width: 150
             },
             {
                 label: t('enterprise.featured_status'),
@@ -107,6 +107,7 @@ const baTable = new baTableClass(
                 sortable: false,
                 render: 'tag',
                 replaceValue: { '0': t('enterprise.featured_status 0'), '1': t('enterprise.featured_status 1') },
+                width: 150
             },
             { label: t('enterprise.weigh'), prop: 'weigh', align: 'center', operator: 'RANGE', sortable: 'custom' },
             { label: t('enterprise.view_count'), prop: 'view_count', align: 'center', sortable: false, operator: 'RANGE' },

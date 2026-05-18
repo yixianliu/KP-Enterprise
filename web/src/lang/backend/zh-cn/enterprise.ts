@@ -3,7 +3,7 @@ export default {
     enterprise_uuid: '企业UUID',
     lang_key: '语言标识',
     title: '企业名称',
-    slug: 'URL别名',
+    slug: 'Slug',
     content: '企业介绍',
     purpose: '企业宗旨',
     develop: '企业发展',
