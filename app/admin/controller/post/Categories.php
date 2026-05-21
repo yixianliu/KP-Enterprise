@@ -1,19 +1,19 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\admin\controller\post;
 
 use app\common\controller\Backend;
 use Throwable;
 
 /**
- * 菜单管理
+ * 文章分类管理
  */
-class Menu extends Backend
+class Categories extends Backend
 {
     /**
-     * Menu模型对象
+     * Categories模型对象
      * @var object
-     * @phpstan-var \app\admin\model\Menu
+     * @phpstan-var \app\admin\model\post\Categories
      */
     protected object $model;
 
@@ -21,12 +21,13 @@ class Menu extends Backend
 
     protected array|string $preExcludeFields = ['id', 'update_time', 'create_time'];
 
-    protected string|array $quickSearchField = ['title'];
+    protected string|array $quickSearchField = ['id'];
 
     public function initialize(): void
     {
         parent::initialize();
-        $this->model = new \app\admin\model\Menu();
+        $this->model = new \app\admin\model\post\Categories();
+        $this->request->filter('clean_xss');
     }
 
 

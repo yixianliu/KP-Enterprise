@@ -6,7 +6,7 @@
         <!-- 自定义按钮请使用插槽，甚至公共搜索也可以使用具名插槽渲染，参见文档 -->
         <TableHeader
             :buttons="['refresh', 'add', 'edit', 'delete', 'comSearch', 'quickSearch', 'columnDisplay']"
-            :quick-search-placeholder="t('Quick search placeholder', { fields: t('menu.quick Search Fields') })"
+            :quick-search-placeholder="t('Quick search placeholder', { fields: t('post.categories.quick Search Fields') })"
         ></TableHeader>
 
         <!-- 表格 -->
@@ -30,7 +30,7 @@ import Table from '/@/components/table/index.vue'
 import baTableClass from '/@/utils/baTable'
 
 defineOptions({
-    name: 'menu',
+    name: 'post/categories',
 })
 
 const { t } = useI18n()
@@ -41,55 +41,52 @@ const optButtons: OptButton[] = defaultOptButtons(['weigh-sort', 'edit', 'delete
  * baTable 内包含了表格的所有数据且数据具备响应性，然后通过 provide 注入给了后代组件
  */
 const baTable = new baTableClass(
-    new baTableApi('/admin/Menu/'),
+    new baTableApi('/admin/post.Categories/'),
     {
         pk: 'id',
-        filter: {
-            limit: 30,
-        },
         column: [
             { type: 'selection', align: 'center', operator: false },
+
             {
-                label: t('menu.title'),
+                label: t('post.categories.title'),
                 prop: 'title',
                 align: 'center',
                 operatorPlaceholder: t('Fuzzy query'),
                 sortable: false,
                 operator: 'LIKE',
-                width: 250,
+                width: 160,
             },
+
             {
-                label: t('menu.lang_key'),
+                label: t('post.categories.lang_key'),
                 prop: 'lang_key',
                 align: 'center',
                 operatorPlaceholder: t('Fuzzy query'),
                 sortable: false,
                 operator: 'LIKE',
             },
-            { label: t('menu.urls'), prop: 'urls', align: 'center', operatorPlaceholder: t('Fuzzy query'), sortable: false, operator: 'LIKE' },
-            { label: t('menu.icon'), prop: 'icon', align: 'center', render: 'icon', operator: false },
-            { label: t('menu.weigh'), prop: 'weigh', align: 'center', operator: 'RANGE', sortable: 'custom' },
             {
-                label: t('menu.status'),
+                label: t('post.categories.slug'),
+                prop: 'slug',
+                align: 'center',
+                operatorPlaceholder: t('Fuzzy query'),
+                sortable: false,
+                operator: 'LIKE',
+            },
+            { label: t('post.categories.weigh'), prop: 'weigh', align: 'center', operator: 'RANGE', sortable: 'custom' },
+            { label: t('post.categories.post_count'), prop: 'post_count', align: 'center', sortable: false, operator: 'RANGE' },
+            {
+                label: t('post.categories.status'),
                 prop: 'status',
                 align: 'center',
                 operator: 'eq',
                 sortable: false,
                 render: 'tag',
-                replaceValue: { '0': t('menu.status 0'), '1': t('menu.status 1') },
-                width: 150,
+                replaceValue: { '0': t('post.categories.status 0'), '1': t('post.categories.status 1') },
             },
+            { label: t('post.categories.meta_data'), prop: 'meta_data', align: 'center', operator: 'eq', sortable: false, render: 'tag' },
             {
-                label: t('menu.is_visible'),
-                prop: 'is_visible',
-                align: 'center',
-                operator: 'RANGE',
-                sortable: false,
-                replaceValue: { '0': t('menu.is_visible 0'), '1': t('menu.is_visible 1') },
-                width: 150,
-            },
-            {
-                label: t('menu.update_time'),
+                label: t('post.categories.update_time'),
                 prop: 'update_time',
                 align: 'center',
                 render: 'datetime',
@@ -100,7 +97,7 @@ const baTable = new baTableClass(
                 timeFormat: 'yyyy-mm-dd hh:MM:ss',
             },
             {
-                label: t('menu.create_time'),
+                label: t('post.categories.create_time'),
                 prop: 'create_time',
                 align: 'center',
                 render: 'datetime',
@@ -110,13 +107,14 @@ const baTable = new baTableClass(
                 width: 160,
                 timeFormat: 'yyyy-mm-dd hh:MM:ss',
             },
-            { label: t('Operate'), align: 'center', width: 140, render: 'buttons', buttons: optButtons, operator: false, fixed: 'right' },
+            { label: t('post.categories.deleted_time'), prop: 'deleted_time', align: 'center', sortable: false, operator: 'RANGE' },
+            { label: t('Operate'), align: 'center', width: 140, render: 'buttons', buttons: optButtons, operator: false },
         ],
         dblClickNotEditColumn: [undefined],
         defaultOrder: { prop: 'weigh', order: 'desc' },
     },
     {
-        defaultItems: { lang_key: 'zh_CN', status: '1', is_visible: '1' },
+        defaultItems: { lang_key: 'zh_CN', content: '', status: '1' },
     }
 )
 

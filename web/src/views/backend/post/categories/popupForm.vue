@@ -7,6 +7,7 @@
         :close-on-click-modal="false"
         :model-value="['Add', 'Edit'].includes(baTable.form.operate!)"
         @close="baTable.toggleForm"
+        width="70%"
     >
         <template #header>
             <div class="title" v-drag="['.ba-operate-dialog', '.el-dialog__header']" v-zoom="'.ba-operate-dialog'">
@@ -30,75 +31,82 @@
                     :rules="rules"
                 >
                     <FormItem
-                        :label="t('menu.parent_id')"
+                        :label="t('post.categories.parent_id')"
                         type="number"
                         v-model="baTable.form.items!.parent_id"
                         prop="parent_id"
                         :input-attr="{ step: 1 }"
-                        :placeholder="t('Please input field', { field: t('menu.parent_id') })"
+                        :placeholder="t('Please input field', { field: t('post.categories.parent_id') })"
                     />
                     <FormItem
-                        :label="t('menu.lang_key')"
+                        :label="t('post.categories.lang_key')"
                         type="string"
                         v-model="baTable.form.items!.lang_key"
                         prop="lang_key"
-                        :placeholder="t('Please input field', { field: t('menu.lang_key') })"
+                        :placeholder="t('Please input field', { field: t('post.categories.lang_key') })"
                     />
                     <FormItem
-                        :label="t('menu.title')"
+                        :label="t('post.categories.title')"
                         type="string"
                         v-model="baTable.form.items!.title"
                         prop="title"
-                        :placeholder="t('Please input field', { field: t('menu.title') })"
+                        :placeholder="t('Please input field', { field: t('post.categories.title') })"
                     />
                     <FormItem
-                        :label="t('menu.urls')"
+                        :label="t('post.categories.slug')"
                         type="string"
-                        v-model="baTable.form.items!.urls"
-                        prop="urls"
-                        :placeholder="t('Please input field', { field: t('menu.urls') })"
+                        v-model="baTable.form.items!.slug"
+                        prop="slug"
+                        :placeholder="t('Please input field', { field: t('post.categories.slug') })"
                     />
                     <FormItem
-                        :label="t('menu.icon')"
-                        type="icon"
-                        v-model="baTable.form.items!.icon"
-                        prop="icon"
-                        :input-attr="{ placement: 'top' }"
-                        :placeholder="t('Please select field', { field: t('menu.icon') })"
-                    />
-                    <FormItem
-                        :label="t('menu.description')"
-                        type="textarea"
-                        v-model="baTable.form.items!.description"
-                        prop="description"
-                        :input-attr="{ rows: 3 }"
+                        :label="t('post.categories.content')"
+                        type="editor"
+                        v-model="baTable.form.items!.content"
+                        prop="content"
                         @keyup.enter.stop=""
                         @keyup.ctrl.enter="baTable.onSubmit(formRef)"
-                        :placeholder="t('Please input field', { field: t('menu.description') })"
+                        :placeholder="t('Please input field', { field: t('post.categories.content') })"
                     />
                     <FormItem
-                        :label="t('menu.weigh')"
+                        :label="t('post.categories.weigh')"
                         type="number"
                         v-model="baTable.form.items!.weigh"
                         prop="weigh"
                         :input-attr="{ step: 1 }"
-                        :placeholder="t('Please input field', { field: t('menu.weigh') })"
+                        :placeholder="t('Please input field', { field: t('post.categories.weigh') })"
                     />
                     <FormItem
-                        :label="t('menu.status')"
+                        :label="t('post.categories.post_count')"
+                        type="number"
+                        v-model="baTable.form.items!.post_count"
+                        prop="post_count"
+                        :input-attr="{ step: 1 }"
+                        :placeholder="t('Please input field', { field: t('post.categories.post_count') })"
+                    />
+                    <FormItem
+                        :label="t('post.categories.status')"
                         type="radio"
                         v-model="baTable.form.items!.status"
                         prop="status"
-                        :input-attr="{ content: { '0': t('menu.status 0'), '1': t('menu.status 1') } }"
-                        :placeholder="t('Please select field', { field: t('menu.status') })"
+                        :input-attr="{ content: { '0': t('post.categories.status 0'), '1': t('post.categories.status 1') } }"
+                        :placeholder="t('Please select field', { field: t('post.categories.status') })"
                     />
                     <FormItem
-                        :label="t('menu.is_visible')"
-                        type="radio"
-                        v-model="baTable.form.items!.is_visible"
-                        prop="is_visible"
-                        :input-attr="{ content: { '0': t('menu.is_visible 0'), '1': t('menu.is_visible 1') } }"
-                        :placeholder="t('Please select field', { field: t('menu.is_visible') })"
+                        :label="t('post.categories.meta_data')"
+                        type="select"
+                        v-model="baTable.form.items!.meta_data"
+                        prop="meta_data"
+                        :input-attr="{ content: {} }"
+                        :placeholder="t('Please select field', { field: t('post.categories.meta_data') })"
+                    />
+                    <FormItem
+                        :label="t('post.categories.deleted_time')"
+                        type="number"
+                        v-model="baTable.form.items!.deleted_time"
+                        prop="deleted_time"
+                        :input-attr="{ step: 1 }"
+                        :placeholder="t('Please input field', { field: t('post.categories.deleted_time') })"
                     />
                 </el-form>
             </div>
@@ -130,11 +138,13 @@ const baTable = inject('baTable') as baTableClass
 const { t } = useI18n()
 
 const rules: Partial<Record<string, FormItemRule[]>> = reactive({
-    title: [buildValidatorData({ name: 'required', title: t('menu.title') })],
-    status: [buildValidatorData({ name: 'required', title: t('menu.status') })],
-    is_visible: [buildValidatorData({ name: 'required', title: t('menu.is_visible') })],
-    update_time: [buildValidatorData({ name: 'date', title: t('menu.update_time') })],
-    create_time: [buildValidatorData({ name: 'date', title: t('menu.create_time') })],
+    title: [buildValidatorData({ name: 'required', title: t('post.categories.title') })],
+    content: [buildValidatorData({ name: 'editorRequired', title: t('post.categories.content') })],
+    post_count: [buildValidatorData({ name: 'number', title: t('post.categories.post_count') })],
+    status: [buildValidatorData({ name: 'required', title: t('post.categories.status') })],
+    update_time: [buildValidatorData({ name: 'date', title: t('post.categories.update_time') })],
+    create_time: [buildValidatorData({ name: 'date', title: t('post.categories.create_time') })],
+    deleted_time: [buildValidatorData({ name: 'number', title: t('post.categories.deleted_time') })],
 })
 </script>
 

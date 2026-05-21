@@ -31,7 +31,9 @@
         "ext-iconv": "*",
         "ext-json": "*",
         "ext-gd": "*",
-        "workerman/gateway-worker": "^3.1"
+        "workerman/gateway-worker": "^3.1",
+        "overtrue/pinyin": "^6.0",
+        "ext-curl": "*"
     },
     "require-dev": {
         "symfony/var-dumper": "^5.4",
