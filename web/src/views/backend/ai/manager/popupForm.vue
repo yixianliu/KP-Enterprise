@@ -29,13 +29,7 @@
                     :label-width="baTable.form.labelWidth + 'px'"
                     :rules="rules"
                 >
-                    <FormItem
-                        :label="t('ai.manager.model_uuid')"
-                        type="string"
-                        v-model="baTable.form.items!.model_uuid"
-                        prop="model_uuid"
-                        :placeholder="t('Please input field', { field: t('ai.manager.model_uuid') })"
-                    />
+
                     <FormItem
                         :label="t('ai.manager.name')"
                         type="string"
@@ -162,7 +156,6 @@ const { t } = useI18n()
 
 const rules: Partial<Record<string, FormItemRule[]>> = reactive({
     name: [buildValidatorData({ name: 'required', title: t('ai.manager.name') })],
-    type: [buildValidatorData({ name: 'required', title: t('ai.manager.type') })],
     status: [buildValidatorData({ name: 'required', title: t('ai.manager.status') })],
     max_tokens: [buildValidatorData({ name: 'number', title: t('ai.manager.max_tokens') })],
     price_per_token: [buildValidatorData({ name: 'number', title: t('ai.manager.price_per_token') })],

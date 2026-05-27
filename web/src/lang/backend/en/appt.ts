@@ -1,0 +1,15 @@
+export default {
+    id: 'id',
+    appt_uuid: 'appt_uuid',
+    name: 'name',
+    tel_phone: 'tel_phone',
+    email: 'email',
+    content: 'content',
+    login_ip: 'login_ip',
+    read_status: 'read_status',
+    'read_status 0': 'read_status 0',
+    'read_status 1': 'read_status 1',
+    update_time: 'update_time',
+    create_time: 'create_time',
+    'quick Search Fields': 'id',
+}

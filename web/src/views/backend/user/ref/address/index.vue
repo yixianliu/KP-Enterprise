@@ -46,16 +46,6 @@ const baTable = new baTableClass(
         pk: 'id',
         column: [
             { type: 'selection', align: 'center', operator: false },
-            { label: t('user.ref.address.id'), prop: 'id', align: 'center', width: 70, operator: 'RANGE', sortable: 'custom' },
-            {
-                label: t('user.ref.address.user_id'),
-                prop: 'user_id',
-                align: 'center',
-                operatorPlaceholder: t('Fuzzy query'),
-                render: 'tags',
-                operator: 'LIKE',
-                comSearchRender: 'string',
-            },
             {
                 label: t('user.ref.address.user__username'),
                 prop: 'user.username',

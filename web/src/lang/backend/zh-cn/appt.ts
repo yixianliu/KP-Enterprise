@@ -1,0 +1,15 @@
+export default {
+    id: 'ID',
+    appt_uuid: '预约UUID',
+    name: '预约人姓名',
+    tel_phone: '手机号码',
+    email: '邮箱',
+    content: '预约内容',
+    login_ip: '预约IP',
+    read_status: '是否阅读',
+    'read_status 0': '否',
+    'read_status 1': '是',
+    update_time: '更新时间',
+    create_time: '创建时间',
+    'quick Search Fields': 'ID',
+}
