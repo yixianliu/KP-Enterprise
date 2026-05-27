@@ -1,0 +1,17 @@
+export default {
+    id: 'id',
+    post_id: 'post_id',
+    post__title: 'title',
+    user_id: 'user_id',
+    user__username: 'username',
+    parent_id: 'parent_id',
+    content: 'content',
+    status: 'status',
+    'status pending': 'status pending',
+    'status approved': 'status approved',
+    'status rejected': 'status rejected',
+    like_count: 'like_count',
+    update_time: 'update_time',
+    create_time: 'create_time',
+    'quick Search Fields': 'id',
+}

@@ -1,0 +1,16 @@
+export default {
+    id: 'id',
+    name: 'name',
+    code: 'code',
+    type: 'type',
+    icon: 'icon',
+    description: 'description',
+    config: 'config',
+    sort_order: 'sort_order',
+    active_status: 'active_status',
+    'active_status 0': 'active_status 0',
+    'active_status 1': 'active_status 1',
+    update_time: 'update_time',
+    create_time: 'create_time',
+    'quick Search Fields': 'id',
+}

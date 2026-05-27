@@ -3,7 +3,6 @@
 namespace app\admin\controller\post;
 
 use app\common\controller\Backend;
-use Throwable;
 
 /**
  * 文章分类管理
@@ -17,8 +16,6 @@ class Categories extends Backend
      */
     protected object $model;
 
-    protected string|array $defaultSortField = 'weigh,desc';
-
     protected array|string $preExcludeFields = ['id', 'update_time', 'create_time'];
 
     protected string|array $quickSearchField = ['id'];
@@ -27,7 +24,6 @@ class Categories extends Backend
     {
         parent::initialize();
         $this->model = new \app\admin\model\post\Categories();
-        $this->request->filter('clean_xss');
     }
 
 
@@ -59,10 +55,61 @@ class Categories extends Backend
         // 针对树形结构
         $treeData = \ba\Tree::instance()->assembleChild($res, 'parent_id', 'id');
 
-        $this->success('', [
+        $this->success('ok', [
             'list'   => $treeData,
             'total'  => count($res),
             'remark' => get_route_remark(),
         ]);
+    }
+
+    /**
+     * 作用：获取分类树
+     * 作者：Zcc
+     * 日期：2026/5/17 09:03
+     */
+    public function tree(): void
+    {
+
+        $res = $this->model
+            ->field($this->indexField)
+            ->withJoin($this->withJoinTable, $this->withJoinType)
+            ->order('weigh', 'desc')
+            ->select()
+            ->toArray();
+
+        $treeData = $this->buildCategoryTree($res);
+
+        $this->success('ok', $treeData);
+    }
+
+    /**
+     * 作用：构建分类树形结构（转换为 value/label/children 格式）
+     * 作者：Zcc
+     * 日期：2026/5/17 09:03
+     * @param array $categories 分类数据
+     * @param int $parentId 父级ID
+     * @return array
+     */
+    protected function buildCategoryTree(array $categories, int $parentId = 0): array
+    {
+        $tree = [];
+
+        foreach ($categories as $category) {
+            if ($category['parent_id'] == $parentId) {
+                $node = [
+                    'value' => $category['id'],
+                    'label' => $category['title'],
+                ];
+
+                $children = $this->buildCategoryTree($categories, $category['id']);
+                if (!empty($children)) {
+                    $node['children'] = $children;
+                }
+
+                $tree[] = $node;
+            }
+        }
+
+        return $tree;
     }
 }

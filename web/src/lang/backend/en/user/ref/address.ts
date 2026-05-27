@@ -1,0 +1,17 @@
+export default {
+    id: 'id',
+    user_id: 'user_id',
+    user__username: 'username',
+    name: 'name',
+    phone: 'phone',
+    province: 'province',
+    city: 'city',
+    district: 'district',
+    address: 'address',
+    default_status: 'default_status',
+    'default_status 0': 'default_status 0',
+    'default_status 1': 'default_status 1',
+    update_time: 'update_time',
+    create_time: 'create_time',
+    'quick Search Fields': 'id',
+}

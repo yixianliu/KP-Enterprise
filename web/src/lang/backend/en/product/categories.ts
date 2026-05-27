@@ -1,0 +1,16 @@
+export default {
+    id: 'id',
+    parent_id: 'parent_id',
+    name: 'name',
+    slug: 'slug',
+    description: 'description',
+    icon: 'icon',
+    thumbnail: 'thumbnail',
+    sort_order: 'sort_order',
+    active_status: 'active_status',
+    'active_status 0': 'active_status 0',
+    'active_status 1': 'active_status 1',
+    update_time: 'update_time',
+    create_time: 'create_time',
+    'quick Search Fields': 'id',
+}

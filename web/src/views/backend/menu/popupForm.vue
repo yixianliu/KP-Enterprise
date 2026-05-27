@@ -31,11 +31,11 @@
                 >
                     <FormItem
                         :label="t('menu.parent_id')"
-                        type="number"
+                        type="remoteSelect"
                         v-model="baTable.form.items!.parent_id"
                         prop="parent_id"
-                        :input-attr="{ step: 1 }"
-                        :placeholder="t('Please input field', { field: t('menu.parent_id') })"
+                        :input-attr="{ pk: 'id', field: 'name', remoteUrl: '' }"
+                        :placeholder="t('Please select field', { field: t('menu.parent_id') })"
                     />
                     <FormItem
                         :label="t('menu.lang_key')"
@@ -50,6 +50,13 @@
                         v-model="baTable.form.items!.title"
                         prop="title"
                         :placeholder="t('Please input field', { field: t('menu.title') })"
+                    />
+                    <FormItem
+                        :label="t('menu.slug')"
+                        type="string"
+                        v-model="baTable.form.items!.slug"
+                        prop="slug"
+                        :placeholder="t('Please input field', { field: t('menu.slug') })"
                     />
                     <FormItem
                         :label="t('menu.urls')"

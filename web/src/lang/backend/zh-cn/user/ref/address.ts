@@ -1,0 +1,17 @@
+export default {
+    id: 'ID',
+    user_id: '用户ID',
+    user__username: '用户名',
+    name: '收货人姓名',
+    phone: '收货人电话',
+    province: '省份',
+    city: '城市',
+    district: '区县',
+    address: '详细地址',
+    default_status: '是否默认',
+    'default_status 0': '否',
+    'default_status 1': '是',
+    update_time: '更新时间',
+    create_time: '创建时间',
+    'quick Search Fields': 'ID',
+}

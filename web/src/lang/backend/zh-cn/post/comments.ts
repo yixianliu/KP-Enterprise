@@ -1,0 +1,17 @@
+export default {
+    id: 'ID',
+    post_id: '文章ID',
+    post__title: '文章标题',
+    user_id: '用户ID',
+    user__username: '用户名',
+    parent_id: '父评论ID',
+    content: '评论内容',
+    status: '状态',
+    'status pending': '待审核',
+    'status approved': '已审核',
+    'status rejected': '已拒绝',
+    like_count: '点赞数',
+    update_time: '更新时间',
+    create_time: '创建时间',
+    'quick Search Fields': 'ID',
+}

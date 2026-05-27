@@ -35,7 +35,7 @@ defineOptions({
 
 const { t } = useI18n()
 const tableRef = useTemplateRef('tableRef')
-const optButtons: OptButton[] = defaultOptButtons(['weigh-sort', 'edit', 'delete'])
+const optButtons: OptButton[] = defaultOptButtons(['edit', 'delete'])
 
 /**
  * baTable 内包含了表格的所有数据且数据具备响应性，然后通过 provide 注入给了后代组件
@@ -46,20 +46,19 @@ const baTable = new baTableClass(
         pk: 'id',
         column: [
             { type: 'selection', align: 'center', operator: false },
-
+            { label: t('post.categories.id'), prop: 'id', align: 'center', width: 70, operator: 'RANGE', sortable: 'custom' },
             {
-                label: t('post.categories.title'),
-                prop: 'title',
+                label: t('post.categories.parent_id'),
+                prop: 'parent_id',
                 align: 'center',
                 operatorPlaceholder: t('Fuzzy query'),
+                render: 'tags',
                 sortable: false,
                 operator: 'LIKE',
-                width: 160,
             },
-
             {
-                label: t('post.categories.lang_key'),
-                prop: 'lang_key',
+                label: t('post.categories.name'),
+                prop: 'name',
                 align: 'center',
                 operatorPlaceholder: t('Fuzzy query'),
                 sortable: false,
@@ -73,18 +72,25 @@ const baTable = new baTableClass(
                 sortable: false,
                 operator: 'LIKE',
             },
-            { label: t('post.categories.weigh'), prop: 'weigh', align: 'center', operator: 'RANGE', sortable: 'custom' },
-            { label: t('post.categories.post_count'), prop: 'post_count', align: 'center', sortable: false, operator: 'RANGE' },
             {
-                label: t('post.categories.status'),
-                prop: 'status',
+                label: t('post.categories.description'),
+                prop: 'description',
+                align: 'center',
+                operatorPlaceholder: t('Fuzzy query'),
+                sortable: false,
+                operator: 'LIKE',
+            },
+            // { label: t('post.categories.icon'), prop: 'icon', align: 'center', render: 'icon', operator: false },
+            { label: t('post.categories.sort_order'), prop: 'sort_order', align: 'center', sortable: false, operator: 'RANGE' },
+            {
+                label: t('post.categories.active_status'),
+                prop: 'active_status',
                 align: 'center',
                 operator: 'eq',
                 sortable: false,
                 render: 'tag',
-                replaceValue: { '0': t('post.categories.status 0'), '1': t('post.categories.status 1') },
+                replaceValue: { '0': t('post.categories.active_status 0'), '1': t('post.categories.active_status 1') },
             },
-            { label: t('post.categories.meta_data'), prop: 'meta_data', align: 'center', operator: 'eq', sortable: false, render: 'tag' },
             {
                 label: t('post.categories.update_time'),
                 prop: 'update_time',
@@ -107,14 +113,12 @@ const baTable = new baTableClass(
                 width: 160,
                 timeFormat: 'yyyy-mm-dd hh:MM:ss',
             },
-            { label: t('post.categories.deleted_time'), prop: 'deleted_time', align: 'center', sortable: false, operator: 'RANGE' },
-            { label: t('Operate'), align: 'center', width: 140, render: 'buttons', buttons: optButtons, operator: false },
+            { label: t('Operate'), align: 'center', width: 100, render: 'buttons', buttons: optButtons, operator: false },
         ],
         dblClickNotEditColumn: [undefined],
-        defaultOrder: { prop: 'weigh', order: 'desc' },
     },
     {
-        defaultItems: { lang_key: 'zh_CN', content: '', status: '1' },
+        defaultItems: { active_status: '1' },
     }
 )
 

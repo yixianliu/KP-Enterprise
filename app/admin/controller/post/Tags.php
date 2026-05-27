@@ -16,8 +16,6 @@ class Tags extends Backend
      */
     protected object $model;
 
-    protected string|array $defaultSortField = 'weigh,desc';
-
     protected array|string $preExcludeFields = ['id', 'update_time', 'create_time'];
 
     protected string|array $quickSearchField = ['id'];

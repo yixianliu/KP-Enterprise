@@ -1,9 +1,9 @@
 export default {
     id: 'ID',
-    menu_uuid: '菜单UUID',
     parent_id: '上级菜单',
     lang_key: '语言标识',
     title: '菜单标题',
+    slug: '菜单标题 - Slug',
     urls: '菜单链接',
     icon: '菜单图标',
     description: '菜单描述',

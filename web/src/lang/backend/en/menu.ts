@@ -1,9 +1,9 @@
 export default {
     id: 'id',
-    menu_uuid: 'menu_uuid',
     parent_id: 'parent_id',
     lang_key: 'lang_key',
     title: 'title',
+    slug: 'slug',
     urls: 'urls',
     icon: 'icon',
     description: 'description',

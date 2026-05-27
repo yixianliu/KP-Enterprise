@@ -1,0 +1,16 @@
+export default {
+    id: 'ID',
+    parent_id: '父分类ID',
+    name: '分类名称',
+    slug: '分类别名',
+    description: '分类描述',
+    icon: '图标',
+    thumbnail: '缩略图',
+    sort_order: '排序',
+    active_status: '是否启用',
+    'active_status 0': '否',
+    'active_status 1': '是',
+    update_time: '更新时间',
+    create_time: '创建时间',
+    'quick Search Fields': 'ID',
+}

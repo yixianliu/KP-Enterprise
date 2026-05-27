@@ -30,13 +30,6 @@
                     :rules="rules"
                 >
                     <FormItem
-                        :label="t('post.tags.tag_uuid')"
-                        type="string"
-                        v-model="baTable.form.items!.tag_uuid"
-                        prop="tag_uuid"
-                        :placeholder="t('Please input field', { field: t('post.tags.tag_uuid') })"
-                    />
-                    <FormItem
                         :label="t('post.tags.name')"
                         type="string"
                         v-model="baTable.form.items!.name"
@@ -52,29 +45,10 @@
                     />
                     <FormItem
                         :label="t('post.tags.description')"
-                        type="textarea"
+                        type="string"
                         v-model="baTable.form.items!.description"
                         prop="description"
-                        :input-attr="{ rows: 3 }"
-                        @keyup.enter.stop=""
-                        @keyup.ctrl.enter="baTable.onSubmit(formRef)"
                         :placeholder="t('Please input field', { field: t('post.tags.description') })"
-                    />
-                    <FormItem
-                        :label="t('post.tags.weigh')"
-                        type="number"
-                        v-model="baTable.form.items!.weigh"
-                        prop="weigh"
-                        :input-attr="{ step: 1 }"
-                        :placeholder="t('Please input field', { field: t('post.tags.weigh') })"
-                    />
-                    <FormItem
-                        :label="t('post.tags.usage_count')"
-                        type="number"
-                        v-model="baTable.form.items!.usage_count"
-                        prop="usage_count"
-                        :input-attr="{ step: 1 }"
-                        :placeholder="t('Please input field', { field: t('post.tags.usage_count') })"
                     />
                     <FormItem
                         :label="t('post.tags.color')"
@@ -82,45 +56,6 @@
                         v-model="baTable.form.items!.color"
                         prop="color"
                         :placeholder="t('Please input field', { field: t('post.tags.color') })"
-                    />
-                    <FormItem
-                        :label="t('post.tags.icon')"
-                        type="icon"
-                        v-model="baTable.form.items!.icon"
-                        prop="icon"
-                        :input-attr="{ placement: 'top' }"
-                        :placeholder="t('Please select field', { field: t('post.tags.icon') })"
-                    />
-                    <FormItem
-                        :label="t('post.tags.lang_key')"
-                        type="string"
-                        v-model="baTable.form.items!.lang_key"
-                        prop="lang_key"
-                        :placeholder="t('Please input field', { field: t('post.tags.lang_key') })"
-                    />
-                    <FormItem
-                        :label="t('post.tags.status')"
-                        type="radio"
-                        v-model="baTable.form.items!.status"
-                        prop="status"
-                        :input-attr="{ content: { '0': t('post.tags.status 0'), '1': t('post.tags.status 1') } }"
-                        :placeholder="t('Please select field', { field: t('post.tags.status') })"
-                    />
-                    <FormItem
-                        :label="t('post.tags.meta_data')"
-                        type="select"
-                        v-model="baTable.form.items!.meta_data"
-                        prop="meta_data"
-                        :input-attr="{ content: {} }"
-                        :placeholder="t('Please select field', { field: t('post.tags.meta_data') })"
-                    />
-                    <FormItem
-                        :label="t('post.tags.deleted_time')"
-                        type="number"
-                        v-model="baTable.form.items!.deleted_time"
-                        prop="deleted_time"
-                        :input-attr="{ step: 1 }"
-                        :placeholder="t('Please input field', { field: t('post.tags.deleted_time') })"
                     />
                 </el-form>
             </div>
@@ -153,11 +88,8 @@ const { t } = useI18n()
 
 const rules: Partial<Record<string, FormItemRule[]>> = reactive({
     name: [buildValidatorData({ name: 'required', title: t('post.tags.name') })],
-    usage_count: [buildValidatorData({ name: 'number', title: t('post.tags.usage_count') })],
-    status: [buildValidatorData({ name: 'required', title: t('post.tags.status') })],
     update_time: [buildValidatorData({ name: 'date', title: t('post.tags.update_time') })],
     create_time: [buildValidatorData({ name: 'date', title: t('post.tags.create_time') })],
-    deleted_time: [buildValidatorData({ name: 'number', title: t('post.tags.deleted_time') })],
 })
 </script>
 

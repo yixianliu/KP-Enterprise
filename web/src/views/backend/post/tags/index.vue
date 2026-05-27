@@ -35,7 +35,7 @@ defineOptions({
 
 const { t } = useI18n()
 const tableRef = useTemplateRef('tableRef')
-const optButtons: OptButton[] = defaultOptButtons(['weigh-sort', 'edit', 'delete'])
+const optButtons: OptButton[] = defaultOptButtons(['edit', 'delete'])
 
 /**
  * baTable 内包含了表格的所有数据且数据具备响应性，然后通过 provide 注入给了后代组件
@@ -47,38 +47,17 @@ const baTable = new baTableClass(
         column: [
             { type: 'selection', align: 'center', operator: false },
             { label: t('post.tags.id'), prop: 'id', align: 'center', width: 70, operator: 'RANGE', sortable: 'custom' },
-            {
-                label: t('post.tags.tag_uuid'),
-                prop: 'tag_uuid',
-                align: 'center',
-                operatorPlaceholder: t('Fuzzy query'),
-                sortable: false,
-                operator: 'LIKE',
-            },
             { label: t('post.tags.name'), prop: 'name', align: 'center', operatorPlaceholder: t('Fuzzy query'), sortable: false, operator: 'LIKE' },
             { label: t('post.tags.slug'), prop: 'slug', align: 'center', operatorPlaceholder: t('Fuzzy query'), sortable: false, operator: 'LIKE' },
-            { label: t('post.tags.weigh'), prop: 'weigh', align: 'center', operator: 'RANGE', sortable: 'custom' },
-            { label: t('post.tags.usage_count'), prop: 'usage_count', align: 'center', sortable: false, operator: 'RANGE' },
-            { label: t('post.tags.color'), prop: 'color', align: 'center', render: 'color', operator: false },
-            { label: t('post.tags.icon'), prop: 'icon', align: 'center', render: 'icon', operator: false },
             {
-                label: t('post.tags.lang_key'),
-                prop: 'lang_key',
+                label: t('post.tags.description'),
+                prop: 'description',
                 align: 'center',
                 operatorPlaceholder: t('Fuzzy query'),
                 sortable: false,
                 operator: 'LIKE',
             },
-            {
-                label: t('post.tags.status'),
-                prop: 'status',
-                align: 'center',
-                operator: 'eq',
-                sortable: false,
-                render: 'tag',
-                replaceValue: { '0': t('post.tags.status 0'), '1': t('post.tags.status 1') },
-            },
-            { label: t('post.tags.meta_data'), prop: 'meta_data', align: 'center', operator: 'eq', sortable: false, render: 'tag' },
+            { label: t('post.tags.color'), prop: 'color', align: 'center', render: 'color', operator: false },
             {
                 label: t('post.tags.update_time'),
                 prop: 'update_time',
@@ -101,14 +80,12 @@ const baTable = new baTableClass(
                 width: 160,
                 timeFormat: 'yyyy-mm-dd hh:MM:ss',
             },
-            { label: t('post.tags.deleted_time'), prop: 'deleted_time', align: 'center', sortable: false, operator: 'RANGE' },
-            { label: t('Operate'), align: 'center', width: 140, render: 'buttons', buttons: optButtons, operator: false },
+            { label: t('Operate'), align: 'center', width: 100, render: 'buttons', buttons: optButtons, operator: false },
         ],
         dblClickNotEditColumn: [undefined],
-        defaultOrder: { prop: 'weigh', order: 'desc' },
     },
     {
-        defaultItems: { color: '#007bff', lang_key: 'zh_CN', status: '1' },
+        defaultItems: {},
     }
 )
 

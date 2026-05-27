@@ -1,0 +1,16 @@
+export default {
+    id: 'ID',
+    name: '支付方式名称',
+    code: '支付方式代码',
+    type: '支付类型',
+    icon: '图标',
+    description: '描述',
+    config: '配置参数',
+    sort_order: '排序',
+    active_status: '是否启用',
+    'active_status 0': '否',
+    'active_status 1': '是',
+    update_time: '更新时间',
+    create_time: '创建时间',
+    'quick Search Fields': 'ID',
+}
